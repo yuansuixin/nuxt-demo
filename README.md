@@ -17,4 +17,11 @@ $ yarn start
 $ yarn generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+#### 项目详细步骤
+
+* 创建项目  `npx create-nuxt-app nuxt-demo`
+* 安装依赖 `yarn add sass sass-loader -D`
+
+
+
+
