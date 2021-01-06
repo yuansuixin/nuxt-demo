@@ -1,30 +1,11 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
-      <h1 class="title">nuxt-demo</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-      <!-- user agent is :{{ userAgent }} -->
-      <br />
-      <br />
-      posts:{{ posts }}
+      <p>邮箱：<input type="text" v-model="username" /></p>
+      <p>密码：<input type="text" v-model="password" /></p>
+      <p>图片验证：<input type="text" v-model="code" /></p>
+      <p>sid：<input type="text" v-model="sid" /></p>
+      <button type="button" @click="login()">登陆</button>
     </div>
   </div>
 </template>
@@ -32,18 +13,38 @@
 <script>
 // import ErrorHandle from '~/plugins/axios'
 export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+      code: '',
+      sid: '',
+    }
+  },
+  methods: {
+    login() {
+      this.$auth.loginWith('local', {
+        data: {
+          username: this.username,
+          password: this.password,
+          code: this.code,
+          sid: this.sid,
+        },
+      })
+    },
+  },
   // asyncData({ $axios, redirect }) {
   //   ErrorHandle($axios, redirect)
   // },
 
-  async asyncData({ $axios }) {
-    // $get返回的直接是result.data
-    // 使用get返回的带有headers，status等信息
-    const result = await $axios.get('http://localhost:8000/posts')
-    return {
-      posts: result.data,
-    }
-  },
+  // async asyncData({ $axios }) {
+  //   // $get返回的直接是result.data
+  //   // 使用get返回的带有headers，status等信息
+  //   const result = await $axios.get('http://localhost:8000/posts')
+  //   return {
+  //     posts: result.data,
+  //   }
+  // },
   // asyncData: ({ req }) => {
   //   return {
   //     userAgent: req

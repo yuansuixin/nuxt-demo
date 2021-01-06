@@ -9,7 +9,10 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
-
+  server: {
+    port: 8088, // default: 3000
+    host: '0.0.0.0', // default: localhost,
+  },
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [],
 
@@ -29,11 +32,31 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:3000',
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/login/login',
+            method: 'post',
+            propertyName: 'token',
+          },
+          logout: { url: '/api/auth/logout', method: 'post' },
+          user: { url: '/public/info', method: 'get', propertyName: 'data' },
+        },
+        // tokenRequired: true,
+        // tokenType: 'bearer'
+      },
+    },
+  },
 }

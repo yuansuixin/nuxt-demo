@@ -21,8 +21,9 @@ $ yarn generate
 
 * 创建项目  `npx create-nuxt-app nuxt-demo`
 * 安装依赖 `yarn add sass sass-loader -D`
-* 使用json-server进行模拟接口请求  `npm install -g json-server`
+* 使用json-server进行模拟web服务  `npm install -g json-server`
   * 使用指令启动 `json-server --watch db.json --port=8000`
+* auth模块  `yarn add @nuxtjs/auth`
 
 
 
