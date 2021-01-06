@@ -21,12 +21,39 @@
           GitHub
         </a>
       </div>
+      <!-- user agent is :{{ userAgent }} -->
+      <br />
+      <br />
+      posts:{{ posts }}
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+// import ErrorHandle from '~/plugins/axios'
+export default {
+  // asyncData({ $axios, redirect }) {
+  //   ErrorHandle($axios, redirect)
+  // },
+
+  async asyncData({ $axios }) {
+    // $get返回的直接是result.data
+    // 使用get返回的带有headers，status等信息
+    const result = await $axios.get('http://localhost:8000/posts')
+    return {
+      posts: result.data,
+    }
+  },
+  // asyncData: ({ req }) => {
+  //   return {
+  //     userAgent: req
+  //       ? req.headers['user-agent']
+  //       : typeof navigator !== 'undefined'
+  //       ? navigator.userAgent
+  //       : 'No user agent ',
+  //   }
+  // },
+}
 </script>
 
 <style>
